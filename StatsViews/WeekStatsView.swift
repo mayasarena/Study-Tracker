@@ -40,24 +40,22 @@ struct WeekStatsView: View {
                                 VStack(alignment: .leading, spacing: 10) {
                                     VStack(spacing: 3) {
                                         Text("Difference between your study time this week up to now (\(coreDataViewModel.weekFocusTrend[0].weekday)) and your study time last week at the same time:")
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularFont)
                                             .foregroundColor(Color.theme.mainText)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         Text("\(getFocusTrendTextLastWeek())")
-                                            .fontWeight(.bold)
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularBoldFont)
                                             .foregroundColor(Color.theme.accent)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                     
                                     VStack(spacing: 3) {
                                         Text("Difference between your study time this week up to now (\(coreDataViewModel.weekFocusTrend[0].weekday)) and your study time the week of \(getWeekBeforeLast()) at the same time:")
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularFont)
                                             .foregroundColor(Color.theme.mainText)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         Text("\(getFocusTrendTextWeekBeforeLast())")
-                                            .fontWeight(.bold)
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularBoldFont)
                                             .foregroundColor(Color.theme.accent)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
@@ -156,7 +154,7 @@ struct WeekStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack {
-                            Text("Topic Distribution")
+                            Text("Tag Distribution")
                                 .font(.boldHeader)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .foregroundColor(Color.theme.mainText)

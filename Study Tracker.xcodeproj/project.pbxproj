@@ -67,6 +67,7 @@
 		F39EB0FF296A8DF10002B76E /* Study_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EB0FE296A8DF10002B76E /* Study_TrackerTests.swift */; };
 		F39EB106296A8E760002B76E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39EB0F5296A8DAE0002B76E /* Charts.framework */; };
 		F39EB107296A8E760002B76E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F39EB0F5296A8DAE0002B76E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F39EB10E296A90960002B76E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39EB10D296A90960002B76E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		F39EB0FC296A8DF10002B76E /* Study TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Study TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39EB0FE296A8DF10002B76E /* Study_TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Study_TrackerTests.swift; sourceTree = "<group>"; };
 		F39EB10A296A90960002B76E /* Study-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Study-Tracker-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F39EB10D296A90960002B76E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		F39EB04F296A8AF40002B76E = {
 			isa = PBXGroup;
 			children = (
+				F39EB10B296A90960002B76E /* Launch */,
 				F39EB08F296A8B5E0002B76E /* AvgTimeBarCharts */,
 				F39EB08E296A8B5E0002B76E /* Color.swift */,
 				F39EB0B0296A8B5F0002B76E /* ContentView.swift */,
@@ -356,6 +359,22 @@
 			path = "Study TrackerTests";
 			sourceTree = "<group>";
 		};
+		F39EB10B296A90960002B76E /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				F39EB10C296A90960002B76E /* Views */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		F39EB10C296A90960002B76E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F39EB10D296A90960002B76E /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -474,6 +493,7 @@
 				F39EB07F296A8B320002B76E /* OpenSans-MediumItalic.ttf in Resources */,
 				F39EB088296A8B320002B76E /* button_click_1.mp3 in Resources */,
 				F39EB084296A8B320002B76E /* OpenSans-Medium.ttf in Resources */,
+				F39EB10E296A90960002B76E /* LaunchScreen.storyboard in Resources */,
 				F39EB0DE296A8B880002B76E /* Assets.xcassets in Resources */,
 				F39EB08B296A8B320002B76E /* study_done.mp3 in Resources */,
 				F39EB089296A8B320002B76E /* button_click_cancel.mp3 in Resources */,
@@ -683,11 +703,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Study-Tracker-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Study Tracker";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -714,11 +736,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Study-Tracker-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Study Tracker";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

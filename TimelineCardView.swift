@@ -22,7 +22,8 @@ struct TimelineCardView: View {
             ZStack {
                 VStack() {
                     Image(systemName: "pencil")
-                        .frame(width: 50, height: 30, alignment: .trailing)
+                        .frame(width: 50, height: 50, alignment: .topTrailing)
+                        .background(Color.theme.BG)
                         .foregroundColor(Color.theme.secondaryText)
                         .onTapGesture {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0.7)){
@@ -36,7 +37,7 @@ struct TimelineCardView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
 
-                VStack(spacing: 5) {
+                VStack(spacing: 7) {
                     Text("\(startTime, style: .time) - \(endTime, style: .time)")
                         .font(.smallBoldFont)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -46,6 +47,7 @@ struct TimelineCardView: View {
                         .font(.regularFont)
                         .foregroundColor(Color.theme.mainText)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, 3)
                     
                     Text(topic)
                         .font(.smallBoldFont)

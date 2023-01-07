@@ -143,6 +143,7 @@ struct TopicEditorView: View {
                 .zIndex(2.0)
                 
             }
+            .frame(maxWidth: .infinity)
             .background(Color.theme.BG)
             .navigationBarTitle("")
             .navigationBarHidden(true)

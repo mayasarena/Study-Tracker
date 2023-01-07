@@ -39,24 +39,22 @@ struct DayStatsView: View {
                                 VStack(alignment: .leading, spacing: 10) {
                                     VStack(spacing: 3) {
                                         Text("Difference between your study time today up to now (\(coreDataViewModel.dayFocusTrend[0].time)) and your study time yesterday at the same time:")
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularFont)
                                             .foregroundColor(Color.theme.mainText)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         Text("\(getFocusTrendTextYesterday())")
-                                            .fontWeight(.bold)
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularBoldFont)
                                             .foregroundColor(Color.theme.accent)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                     
                                     VStack(spacing: 3) {
                                         Text("Difference between your study time today up to now (\(coreDataViewModel.dayFocusTrend[0].time)) and your study time the day before yesterday at the same time:")
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularFont)
                                             .foregroundColor(Color.theme.mainText)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         Text("\(getFocusTrendTextDayBeforeYesterday())")
-                                            .fontWeight(.bold)
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularBoldFont)
                                             .foregroundColor(Color.theme.accent)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
@@ -105,7 +103,7 @@ struct DayStatsView: View {
                         .padding(.vertical, 15)
                     
                         VStack {
-                            Text("Topic Distribution")
+                            Text("Tag Distribution")
                                 .font(.boldHeader)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .foregroundColor(Color.theme.mainText)

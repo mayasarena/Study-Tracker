@@ -76,6 +76,7 @@ struct TimelineView: View {
             .navigationTitle("History")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .frame(maxWidth: .infinity)
         .background(Color.theme.BG)
         .padding(.bottom, 50)
     
@@ -175,9 +176,10 @@ struct TimelineView: View {
                             .padding(.leading, 10)
                             .padding(.top, 10)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.theme.BG)
                             
                             if topicEditorViewModel.editTopicPopupOpened || topicEditorViewModel.addTopicPopupOpened {
-                                Color.black.opacity(0.15).ignoresSafeArea()
+                                Color.primary.opacity(0.15).ignoresSafeArea()
                             }
                         }
                         .frame(height: 60, alignment: .center)
@@ -287,7 +289,7 @@ struct TimelineView: View {
                 Button {
                     showDeleteAlert = true
                 } label: {
-                    Text("Delete Entry")
+                    Text("Delete")
                         .tracking(2)
                 }
                 .alert(isPresented: $showDeleteAlert) {

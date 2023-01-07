@@ -9,22 +9,25 @@ import Foundation
 import SwiftUI
 
 extension Font {
-    static let boldHeader = Font.custom("OpenSans-Bold", size: 18)
-    static let reallyBigFont = Font.custom("OpenSans-Bold", size: 20)
-    static let graphAxisFont = Font.custom("OpenSans-Regular", size: 10)
+    static let boldHeader = Font.custom("OpenSans-Bold", size: 20)
+    static let reallyBigFont = Font.custom("OpenSans-SemiBold", size: 20)
+    static let graphAxisFont = Font.custom("OpenSans-Regular", size: 12)
     
-    static let regularFont = Font.custom("OpenSans-Regular", size: 12)
+    static let regularFont = Font.custom("OpenSans-Regular", size: 14)
+    static let mediumFont = Font.custom("OpenSans-Regular", size: 16)
+    static let smallFont = Font.custom("OpenSans-Regular", size: 12)
     
-    static let smallBoldFont = Font.custom("OpenSans-Bold", size: 10)
-    static let regularBoldFont = Font.custom("OpenSans-Bold", size: 12)
-    static let mediumBoldFont = Font.custom("OpenSans-Bold", size: 14)
+    static let tinyBoldFont = Font.custom("OpenSans-Bold", size: 10)
+    static let smallBoldFont = Font.custom("OpenSans-Bold", size: 12)
+    static let regularBoldFont = Font.custom("OpenSans-Bold", size: 14)
+    static let mediumBoldFont = Font.custom("OpenSans-Bold", size: 16)
     
-    static let regularSemiBoldFont = Font.custom("OpenSans-SemiBold", size: 12)
-    static let smallSemiBoldFont = Font.custom("OpenSans-SemiBold", size: 10)
-    static let mediumSemiBoldFont = Font.custom("OpenSans-SemiBold", size: 14)
-    static let stopwatchFont = Font.custom("OpenSans-SemiBold", size: 60)
+    static let regularSemiBoldFont = Font.custom("OpenSans-SemiBold", size: 14)
+    static let smallSemiBoldFont = Font.custom("OpenSans-SemiBold", size: 12)
+    static let mediumSemiBoldFont = Font.custom("OpenSans-SemiBold", size: 16)
+    static let stopwatchFont = Font.custom("OpenSans-SemiBold", size: 80)
     
-    static let smallExtraBoldFont = Font.custom("OpenSans-ExtraBold", size: 10)
+    static let smallExtraBoldFont = Font.custom("OpenSans-ExtraBold", size: 12)
 }
 
 extension Font.TextStyle {

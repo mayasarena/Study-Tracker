@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
+                                <rect key="frame" x="0.0" y="832" width="393" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHH-5f-VF8">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mkb-HP-rwv">
+                                        <rect key="frame" x="146.66666666666666" y="329.66666666666669" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="K6t-ZG-zlf"/>
+                                            <constraint firstAttribute="height" constant="100" id="Vs0-Bf-w5v"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="mkb-HP-rwv" firstAttribute="centerX" secondItem="bHH-5f-VF8" secondAttribute="centerX" id="SVV-e6-flq"/>
+                                    <constraint firstItem="mkb-HP-rwv" firstAttribute="centerY" secondItem="bHH-5f-VF8" secondAttribute="centerY" id="Zbd-9J-lJ0"/>
+                                    <constraint firstItem="mkb-HP-rwv" firstAttribute="centerX" secondItem="bHH-5f-VF8" secondAttribute="centerX" id="bTD-Zb-BZU"/>
+                                    <constraint firstItem="mkb-HP-rwv" firstAttribute="centerY" secondItem="bHH-5f-VF8" secondAttribute="centerY" id="q1u-Cj-ea6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" name="launch_color"/>
+                        <constraints>
+                            <constraint firstItem="bHH-5f-VF8" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="2Ef-25-aGt"/>
+                            <constraint firstItem="bHH-5f-VF8" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="4gi-Kh-up2"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="bHH-5f-VF8" secondAttribute="bottom" id="RTV-EU-enD"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" symbolic="YES" id="SfN-ll-jLj"/>
+                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="bHH-5f-VF8" secondAttribute="trailing" id="ZlV-DB-lT0"/>
+                            <constraint firstItem="bHH-5f-VF8" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="bss-lV-xrL"/>
+                            <constraint firstItem="bHH-5f-VF8" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" id="rPV-cU-Olb"/>
+                            <constraint firstItem="bHH-5f-VF8" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="t7y-2Q-lNg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app_icon" width="2048" height="2048"/>
+        <namedColor name="launch_color">
+            <color red="0.89099997282028198" green="0.83700001239776611" blue="0.98799997568130493" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

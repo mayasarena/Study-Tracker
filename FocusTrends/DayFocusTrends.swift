@@ -27,7 +27,7 @@ struct DayFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("today at \(coreDataViewModel.dayFocusTrend[0].time)")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -48,7 +48,7 @@ struct DayFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("yesterday at \(coreDataViewModel.dayFocusTrend[1].time)")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -69,7 +69,7 @@ struct DayFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("the day before yesterday at \(coreDataViewModel.dayFocusTrend[2].time)")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

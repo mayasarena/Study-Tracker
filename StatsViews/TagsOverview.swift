@@ -17,7 +17,7 @@ struct TagsOverview: View {
                 let graphWidth = geometry.size.width * 0.80
                 
                 ForEach(topicData.sorted{$0.totalMinsFocused > $1.totalMinsFocused}) { item in
-                    VStack(alignment: .center, spacing: 4) {
+                    VStack(alignment: .center, spacing: 2) {
                         HStack() {
                             Text("\(item.topicName)")
                                 .font(.mediumSemiBoldFont)
@@ -38,7 +38,7 @@ struct TagsOverview: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
-                    .frame(height: 40)
+                    .frame(height: 45)
                     .padding(.bottom, 10)
                 }
             }

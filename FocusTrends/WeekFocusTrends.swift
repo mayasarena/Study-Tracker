@@ -28,7 +28,7 @@ struct WeekFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("this week up to \(coreDataViewModel.weekFocusTrend[0].weekday)")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,7 +49,7 @@ struct WeekFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("last week up to \(coreDataViewModel.weekFocusTrend[1].weekday)")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -70,7 +70,7 @@ struct WeekFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("week of \(getWeekBeforeLast()) up to \(coreDataViewModel.weekFocusTrend[2].weekday)")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

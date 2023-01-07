@@ -38,24 +38,22 @@ struct MonthStatsView: View {
                                 VStack(alignment: .leading, spacing: 10) {
                                     VStack(spacing: 3) {
                                         Text("Difference between your study time this month up to now (the \(getMonthDayString(coreDataViewModel.monthFocusTrend[0].monthday))) and your study time in \(prevMonths().0) at the same time:")
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularFont)
                                             .foregroundColor(Color.theme.mainText)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         Text("\(getFocusTrendTextLastMonth())")
-                                            .fontWeight(.bold)
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularBoldFont)
                                             .foregroundColor(Color.theme.accent)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                     
                                     VStack(spacing: 3) {
                                         Text("Difference between your study time this month up to now (the \(getMonthDayString(coreDataViewModel.monthFocusTrend[0].monthday))) and your study time in \(prevMonths().1) at the same time:")
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularFont)
                                             .foregroundColor(Color.theme.mainText)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         Text("\(getFocusTrendTextMonthBeforeLast())")
-                                            .fontWeight(.bold)
-                                            .font(.regularSemiBoldFont)
+                                            .font(.regularBoldFont)
                                             .foregroundColor(Color.theme.accent)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
@@ -154,7 +152,7 @@ struct MonthStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack {
-                            Text("Topic Distribution")
+                            Text("Tag Distribution")
                                 .font(.boldHeader)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .foregroundColor(Color.theme.mainText)

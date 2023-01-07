@@ -68,7 +68,7 @@ struct TimerView: View {
                             //coreDataViewModel.timerViewSelectedTopicEntity
                             Text(coreDataViewModel.timerViewSelectedTopicEntity?.topic ?? "Choose a tag")
                                 .foregroundColor(coreDataViewModel.timerViewSelectedTopicEntity == nil ? Color.theme.mainText.opacity(0.7) : Color.theme.mainText)
-                                .font(.regularFont)
+                                .font(.smallFont)
                                 .frame(maxWidth: .infinity)
                             Spacer()
                             Image(systemName: "pencil")
@@ -207,7 +207,7 @@ struct TimerView: View {
             
             VStack(alignment: .leading, spacing: 15) {
                 Text(greeting())
-                    .padding(.top, 20)
+                    .padding(.top, 50)
                     .padding(.leading, 30)
                     .foregroundColor(Color.theme.mainText)
                     .font(.reallyBigFont)
@@ -217,7 +217,7 @@ struct TimerView: View {
                         .font(.mediumSemiBoldFont)
                         .foregroundColor(Color.theme.secondaryText)
                     Text("\(MinutesToHoursMinutes(mins: coreDataViewModel.getTotalMinutesDay())).")
-                        .font(.mediumSemiBoldFont)
+                        .font(.mediumBoldFont)
                         .foregroundColor(Color.theme.secondaryText)
                 }
                 .padding(.leading, 30)
@@ -436,9 +436,10 @@ struct TimerView: View {
                             .padding(.leading, 10)
                             .padding(.top, 10)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.theme.BG)
                             
                             if topicEditorViewModel.editTopicPopupOpened || topicEditorViewModel.addTopicPopupOpened {
-                                Color.black.opacity(0.15).ignoresSafeArea()
+                                Color.primary.opacity(0.15).ignoresSafeArea()
                             }
                         }
                         .frame(height: 60, alignment: .center)

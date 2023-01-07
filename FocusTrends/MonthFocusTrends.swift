@@ -28,7 +28,7 @@ struct MonthFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("this month up to the \(getMonthDayString(coreDataViewModel.monthFocusTrend[0].monthday))")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,7 +49,7 @@ struct MonthFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("the month of \(prevMonths().0) up to the \(getMonthDayString(coreDataViewModel.monthFocusTrend[1].monthday))")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -70,7 +70,7 @@ struct MonthFocusTrends: View {
                                 .foregroundColor(Color.theme.mainText)
 
                             Text("the month of \(prevMonths().1) up to the \(getMonthDayString(coreDataViewModel.monthFocusTrend[2].monthday))")
-                                .font(.regularSemiBoldFont)
+                                .font(.smallSemiBoldFont)
                                 .foregroundColor(Color.theme.secondaryText)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

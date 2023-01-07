@@ -27,7 +27,7 @@ struct OverviewView: View {
                 .padding(.bottom, 15)
             
             HStack {
-                VStack(spacing: -5) {
+                VStack(spacing: -2) {
                     Text("\(MinutesToHoursMinutes(mins: totalFocusedTime))")
                         .font(.reallyBigFont)
                         .multilineTextAlignment(.center)
@@ -41,7 +41,7 @@ struct OverviewView: View {
                 .frame(height: 45)
                 .frame(maxWidth: .infinity)
                 
-                VStack(spacing: -5) {
+                VStack(spacing: -2) {
                     Text("\(totalFocusSessions)")
                         .font(.reallyBigFont)
                         .multilineTextAlignment(.center)
@@ -55,14 +55,14 @@ struct OverviewView: View {
                 .frame(height: 45)
                 .frame(maxWidth: .infinity)
                 
-                VStack(spacing: 0) {
+                VStack(spacing: 1) {
                     Text("\(mostFocusedTopicName)")
-                        .font(.smallBoldFont)
+                        .font(.tinyBoldFont)
                         .tracking(2)
                         .textCase(.uppercase)
                         .multilineTextAlignment(.center)
                         .padding([.leading, .trailing], 10)
-                        .padding([.top, .bottom], 5)
+                        .padding([.top, .bottom], 4)
                         .background(Color(mostFocusedTopicColor))
                         .cornerRadius(20)
                         .foregroundColor(Color.theme.BG)
