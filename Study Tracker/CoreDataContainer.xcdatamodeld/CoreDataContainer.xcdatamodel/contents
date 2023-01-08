@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="TimeEntity" representedClassName="TimeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="topic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TopicEntity" inverseName="times" inverseEntity="TopicEntity"/>
+    </entity>
+    <entity name="TopicEntity" representedClassName="TopicEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="topic" optional="YES" attributeType="String"/>
+        <relationship name="times" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TimeEntity" inverseName="topic" inverseEntity="TimeEntity"/>
+    </entity>
+    <elements>
+        <element name="TimeEntity" positionX="-18" positionY="27" width="128" height="74"/>
+        <element name="TopicEntity" positionX="36" positionY="99" width="128" height="74"/>
+    </elements>
+</model>
