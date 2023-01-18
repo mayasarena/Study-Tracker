@@ -67,7 +67,7 @@ struct TopicEditorView: View {
                             Text("No tags yet!")
                                 .foregroundColor(Color.theme.secondaryText)
                                 .font(.mediumSemiBoldFont)
-                                .padding(.top, 50)
+                                .padding(.top, UIScreen.main.bounds.height * 0.1)
                         }
                         // MARK: Building topic list
                         ForEach(coreDataViewModel.topics) { topic in
@@ -148,6 +148,7 @@ struct TopicEditorView: View {
             .navigationBarTitle("")
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
 
     }
     

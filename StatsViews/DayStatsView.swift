@@ -133,6 +133,9 @@ struct DayStatsView: View {
                         .background(Color.theme.BG)
                 }
             }
+            .onAppear{
+                statsViewModel.selectedDate = Date()
+            }
         }
         .background(Color.theme.BG)
     }

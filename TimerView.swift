@@ -22,14 +22,14 @@ struct TimerView: View {
     @State private var showTopicSheet = false
     @State private var showCompletePopup = false
     @State private var focusedMinutesString = ""
-    @State var current_Time = Time(min: 0, sec: 0, hour: 0)
-    @State var receiver = Timer.publish(every: 1, on: .current, in: .default).autoconnect()
     
     let userDefaults = UserDefaults.standard
     let START_TIME_KEY = "startTime"
     let IS_COUNTING_KEY = "isCounting"
     
     @AppStorage("timerSeledctedTopicName") var selectedTopicName = ""
+    
+    @Environment(\.scenePhase) var scenePhase
     
     //@State var showPopup: Bool = false
     
@@ -49,7 +49,7 @@ struct TimerView: View {
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
-                VStack(spacing: 25) {
+                VStack(spacing: UIScreen.main.bounds.height * 0.02) {
                     // MARK: Choose Tag
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
@@ -178,36 +178,26 @@ struct TimerView: View {
                         .buttonStyle(WarningButtonStyle())
                     }
                 }
-                .padding(.top, 50)
-                .padding(.bottom, 40)
-                .padding()
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .padding(.top, UIScreen.main.bounds.height * 0.09)
+                //.padding(.bottom, UIScreen.main.bounds.height * 0.2)
+                .frame(maxWidth: .infinity)
+                .frame(height: UIScreen.main.bounds.height * 0.62, alignment: .top)
                 .background(
                     LinearGradient(colors: [Color.theme.accent, Color.theme.accent.opacity(0.7)], startPoint: .bottom, endPoint: .top)
                     .ignoresSafeArea()
                 )
 
                 SemiCircleShape()
+                    .frame(height: 50)
                     .foregroundColor(Color.theme.accent)
                     .shadow(color: Color.theme.accent.opacity(0.5), radius: 2, x: 2, y: 2)
             }
-            .onReceive(receiver) { (_) in
-                let calendar = Calendar.current
-                
-                let min = calendar.component(.minute, from: Date())
-                let sec = calendar.component(.second, from: Date())
-                let hour = calendar.component(.hour, from: Date())
-                
-                self.current_Time = Time(min: min, sec: sec, hour: hour)
-                print(current_Time)
-            }
-            .zIndex(1)
             .background(Color.theme.BG)
             .frame(maxWidth: .infinity, alignment: .top)
             
             VStack(alignment: .leading, spacing: 15) {
                 Text(greeting())
-                    .padding(.top, 50)
+                    .padding(.top, UIScreen.main.bounds.height * 0.01)
                     .padding(.leading, 30)
                     .foregroundColor(Color.theme.mainText)
                     .font(.reallyBigFont)
@@ -222,11 +212,32 @@ struct TimerView: View {
                 }
                 .padding(.leading, 30)
             }
-            .frame(maxWidth: .infinity, maxHeight: 180, alignment: .topLeading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .background(Color.theme.BG)
             .padding(.bottom, 50)
         }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                print("Active")
+                if userDefaults.bool(forKey: IS_COUNTING_KEY) {
+                    print(userDefaults.object(forKey: START_TIME_KEY) ?? Date())
+                    print(Date())
+                    print("timer running")
+                    let startTime = userDefaults.object(forKey: START_TIME_KEY) as? Date
+                    let difference = (startTime ?? Date()).timeIntervalSinceNow
+                    stopWatchManager.setSecondsElapsed(time: Int(difference * -1))
+                }
+                else {
+                    print("timer not running")
+                }
+            } else if newPhase == .inactive {
+                print("Inactive")
+            } else if newPhase == .background {
+                print("Background")
+            }
+        }
         .onAppear(perform: {
+            coreDataViewModel.getTimes(forDay: Date())
             if (userDefaults.bool(forKey: IS_COUNTING_KEY) && selectedTopicName != ""){
                 coreDataViewModel.getTopic(name: selectedTopicName)
                 if coreDataViewModel.topicSearchedByName.count > 0 {
@@ -486,10 +497,4 @@ struct TimerView_Previews: PreviewProvider {
         TimerView().topicSelectionPopup
             .previewLayout(.fixed(width: 400, height: 500))
     }
-}
-
-struct Time {
-    var min: Int
-    var sec: Int
-    var hour: Int
 }

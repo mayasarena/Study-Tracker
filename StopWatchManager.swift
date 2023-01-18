@@ -30,6 +30,8 @@ class StopWatchManager: ObservableObject {
     let START_TIME_KEY = "startTime"
     let IS_COUNTING_KEY = "isCounting"
     
+
+    
     init() {
         if userDefaults.bool(forKey: IS_COUNTING_KEY) {
             print(userDefaults.object(forKey: START_TIME_KEY) ?? Date())
@@ -44,6 +46,10 @@ class StopWatchManager: ObservableObject {
             print("timer not running")
             stop()
         }
+    }
+    
+    func setSecondsElapsed(time: Int) {
+        secondsElapsed = time
     }
     
     func secondsToHoursMinutesSeconds(seconds: Int) -> String {

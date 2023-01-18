@@ -115,6 +115,7 @@ struct MenuButtons: View {
         .frame(width: UIScreen.main.bounds.width/5-15, height: 50, alignment: .center)
         .padding(.horizontal, 3)
         .padding(.top)
+        .padding(.bottom)
         .onTapGesture {
             sideMenuVM.updateSelectedIndex(index: title)
         }
