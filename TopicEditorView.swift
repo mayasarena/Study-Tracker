@@ -218,7 +218,7 @@ struct TopicEditorView: View {
                     Text("Save")
                         .tracking(2)
                 }
-                .disabled(addTopicTextfield.isEmpty || selectedColor == "")
+                .disabled(addTopicTextfield.isEmpty)
                 .buttonStyle(PrimaryButtonStyle())
                 .alert(isPresented: $showChooseDiffNameAlert) {
                     Alert(

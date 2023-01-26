@@ -34,6 +34,7 @@ struct TabBar: View {
                     MenuButtons(image: "stopwatch.fill", title: "Stopwatch")
                     MenuButtons(image: "chart.bar.fill", title: "Charts")
                     MenuButtons(image: "gear", title: "Settings")
+                    //MenuButtons(image: "circle", title: "Notifs")
                     //MenuButtons(image: "gear", title: "Debug")
                 }
                 .frame(height: 50)
@@ -83,6 +84,10 @@ struct CustomTabBar: View {
             if tabBarVM.selectedIndex == "Debug" {
                 CoreDataBootcamp()
                     .padding(.bottom, 50)
+            }
+            
+            if tabBarVM.selectedIndex == "Notifs" {
+                NotificationManagerView()
             }
         
         }

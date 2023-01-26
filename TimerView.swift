@@ -27,7 +27,7 @@ struct TimerView: View {
     let START_TIME_KEY = "startTime"
     let IS_COUNTING_KEY = "isCounting"
     
-    @AppStorage("timerSeledctedTopicName") var selectedTopicName = ""
+    @AppStorage("timerSelectedTopicName") var selectedTopicName = ""
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -96,6 +96,7 @@ struct TimerView: View {
                     if stopWatchManager.mode == .stopped {
                         Button(action: {
                             SoundManager.instance.playSound(sound: .button_click_1)
+                            NotificationManager.instance.scheduleTimerReminderNotification()
                             self.stopWatchManager.start()
                             startTime = Date()
                             
@@ -237,6 +238,13 @@ struct TimerView: View {
             }
         }
         .onAppear(perform: {
+            let center = UNUserNotificationCenter.current()
+            center.getPendingNotificationRequests(completionHandler: { requests in
+                for request in requests {
+                    print(request)
+                }
+            })
+            
             coreDataViewModel.getTimes(forDay: Date())
             if (userDefaults.bool(forKey: IS_COUNTING_KEY) && selectedTopicName != ""){
                 coreDataViewModel.getTopic(name: selectedTopicName)

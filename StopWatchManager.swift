@@ -76,6 +76,7 @@ class StopWatchManager: ObservableObject {
         timer.invalidate()
         secondsElapsed = 0
         mode = .stopped
+        NotificationManager.instance.cancelTimerReminderNotification()
     }
     
     func pause() {

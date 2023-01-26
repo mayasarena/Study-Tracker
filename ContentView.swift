@@ -16,6 +16,16 @@ struct ContentView: View {
         CustomTabBar()
             .environmentObject(settingsManager)
             .onAppear {
+                let defaults = UserDefaults.standard
+                
+                if defaults.bool(forKey: "isAppLaunchedOnce") {
+                    print("Not first launch")
+                }
+                else {
+                    defaults.set(true, forKey: "isAppLaunchedOnce")
+                    print("First launch")
+                    NotificationManager.instance.requestAuthorization()
+                }
                 settingsManager.applyColorMode()
             }
     }

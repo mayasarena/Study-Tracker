@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F39C9C41296B391B009E0E84 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39C9C3E296B3911009E0E84 /* Charts.framework */; };
 		F39C9C42296B391B009E0E84 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F39C9C3E296B3911009E0E84 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F39C9C452981BD88009E0E84 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39C9C442981BD88009E0E84 /* NotificationManager.swift */; };
 		F39EB063296A8AF60002B76E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F39EB062296A8AF60002B76E /* Preview Assets.xcassets */; };
 		F39EB07C296A8B320002B76E /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F39EB06A296A8B320002B76E /* OpenSans-SemiBold.ttf */; };
 		F39EB07D296A8B320002B76E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F39EB06B296A8B320002B76E /* OpenSans-Light.ttf */; };
@@ -110,6 +111,7 @@
 
 /* Begin PBXFileReference section */
 		F39C9C38296B3911009E0E84 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Frameworks/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		F39C9C442981BD88009E0E84 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		F39EB058296A8AF40002B76E /* Study Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Study Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39EB062296A8AF60002B76E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F39EB06A296A8B320002B76E /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				F39EB0AE296A8B5F0002B76E /* SemiCircle.swift */,
 				F39EB0AC296A8B5F0002B76E /* SettingsView.swift */,
 				F39EB09A296A8B5E0002B76E /* SoundManager.swift */,
+				F39C9C442981BD88009E0E84 /* NotificationManager.swift */,
 				F39EB0A2296A8B5F0002B76E /* StatsViews */,
 				F39EB08D296A8B5E0002B76E /* StopWatchManager.swift */,
 				F39EB09C296A8B5E0002B76E /* StudyTrackerApp.swift */,
@@ -523,6 +526,7 @@
 				F39EB0C5296A8B5F0002B76E /* PieChart.swift in Sources */,
 				F39EB0C7296A8B5F0002B76E /* TabBar.swift in Sources */,
 				F39EB0CB296A8B5F0002B76E /* WeekStatsView.swift in Sources */,
+				F39C9C452981BD88009E0E84 /* NotificationManager.swift in Sources */,
 				F39EB0CA296A8B5F0002B76E /* TagsOverview.swift in Sources */,
 				F39EB0BC296A8B5F0002B76E /* TimeDistributionEntries.swift in Sources */,
 				F39EB0C8296A8B5F0002B76E /* PopupWindow.swift in Sources */,
