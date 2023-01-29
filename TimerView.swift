@@ -28,6 +28,8 @@ struct TimerView: View {
     let IS_COUNTING_KEY = "isCounting"
     
     @AppStorage("timerSelectedTopicName") var selectedTopicName = ""
+    @AppStorage("userName") private var userName = ""
+    @AppStorage("timerEmoji") private var timerEmoji = "⏰"
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -84,7 +86,7 @@ struct TimerView: View {
                     }
                         .padding(.bottom, 20)
                     
-                    Text("⏰")
+                    Text("\(timerEmoji)")
                         .font(.system(size: 80))
                     // MARK: Time
                     Text(stopWatchManager.secondsToHoursMinutesSeconds(seconds: stopWatchManager.secondsElapsed))
@@ -113,7 +115,7 @@ struct TimerView: View {
                             Text("Start timer")
                                 .tracking(2)
                         }
-                        .buttonStyle(SecondaryButtonStyle())
+                        .buttonStyle(StartTimerButtonStyle())
                     }
                     
                     if stopWatchManager.mode == .running {
@@ -176,7 +178,7 @@ struct TimerView: View {
                             Text("Stop timer")
                                 .tracking(2)
                         }
-                        .buttonStyle(WarningButtonStyle())
+                        .buttonStyle(StopTimerButtonStyle())
                     }
                 }
                 .padding(.top, UIScreen.main.bounds.height * 0.09)
@@ -479,20 +481,38 @@ struct TimerView: View {
         let currentHour = calendar.component(.hour, from: date as Date)
         let hourInt = Int(currentHour.description)!
         
-        if hourInt >= 5 && hourInt < 12 {
-            return "Good morning! "
-        }
-        
-        else if hourInt >= 12 && hourInt < 17 {
-            return "Good afternoon!"
-        }
-        
-        else if hourInt >= 17 && hourInt < 21 {
-            return "Good evening!"
-        }
-        
-        else if (hourInt >= 21 && hourInt <= 24) || (hourInt >= 0 && hourInt < 5) {
-            return "Good night!"
+        if userName == "" {
+            if hourInt >= 5 && hourInt < 12 {
+                return "Good morning! "
+            }
+            
+            else if hourInt >= 12 && hourInt < 17 {
+                return "Good afternoon!"
+            }
+            
+            else if hourInt >= 17 && hourInt < 21 {
+                return "Good evening!"
+            }
+            
+            else if (hourInt >= 21 && hourInt <= 24) || (hourInt >= 0 && hourInt < 5) {
+                return "Good night!"
+            }
+        } else {
+            if hourInt >= 5 && hourInt < 12 {
+                return "Good morning, \(userName)! "
+            }
+            
+            else if hourInt >= 12 && hourInt < 17 {
+                return "Good afternoon, \(userName)!"
+            }
+            
+            else if hourInt >= 17 && hourInt < 21 {
+                return "Good evening, \(userName)!"
+            }
+            
+            else if (hourInt >= 21 && hourInt <= 24) || (hourInt >= 0 && hourInt < 5) {
+                return "Good night, \(userName)!"
+            }
         }
         
         return "Hello!"

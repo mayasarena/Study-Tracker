@@ -28,10 +28,10 @@ struct WeekTimeDistributionBarChart: View {
                             Text("\(Int(line))m")
                                 .font(.graphAxisFont)
                                 .foregroundColor(Color.theme.secondaryText)
-                                .frame(height: 20)
+                                .frame(width: 40, height: 20, alignment: .trailing)
                         }
                         .frame(maxHeight: .infinity, alignment: .bottom)
-                        .offset(y: -24)
+                        .offset(x: -10, y: -24)
                     }
                 }
             }
@@ -58,7 +58,7 @@ struct WeekTimeDistributionBarChart: View {
                             .overlay(
                                 VStack {
                                     if data.minutesFocused > 0 {
-                                        Text("\(data.minutesFocused)m")
+                                        Text("\(MinutesToHoursMinutes(mins: data.minutesFocused))")
                                             .font(.smallBoldFont)
                                             .padding(.horizontal, 7)
                                             .padding(.vertical, 3)
@@ -66,7 +66,7 @@ struct WeekTimeDistributionBarChart: View {
                                             .cornerRadius(10)
                                             .shadow(color: Color.theme.accent.opacity(0.5), radius: 2, x: 2, y: 2)
                                             .foregroundColor(Color.theme.BG)
-                                            .frame(width: 50, alignment: .center)
+                                            .frame(width: 150, alignment: .center)
                                             .offset(y: -26)
                                     }
                                 }

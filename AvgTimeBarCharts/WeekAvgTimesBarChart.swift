@@ -29,10 +29,10 @@ struct WeekAvgTimesBarChart: View {
                             Text("\(Int(line))m")
                                 .font(.graphAxisFont)
                                 .foregroundColor(Color.theme.secondaryText)
-                                .frame(height: 20)
+                                .frame(width: 40, height: 20, alignment: .trailing)
                         }
                         .frame(maxHeight: .infinity, alignment: .bottom)
-                        .offset(y: -20)
+                        .offset(x: -10, y: -20)
                     }
                 }
             }
@@ -56,7 +56,7 @@ struct WeekAvgTimesBarChart: View {
                         .overlay(
                             VStack {
                                 if data.averageTime > 0 {
-                                    Text("\(Int(data.averageTime))m")
+                                    Text("\(MinutesToHoursMinutes(mins: Int(data.averageTime)))")
                                         .font(.smallBoldFont)
                                         .bold()
                                         .padding(.horizontal, 7)
@@ -65,7 +65,7 @@ struct WeekAvgTimesBarChart: View {
                                         .cornerRadius(10)
                                         .shadow(color: Color.theme.accent.opacity(0.5), radius: 2, x: 2, y: 2)
                                         .foregroundColor(Color.theme.BG)
-                                        .frame(width: 50, alignment: .center)
+                                        .frame(width: 150, alignment: .center)
                                         .offset(y: -20)
                                 }
                             }

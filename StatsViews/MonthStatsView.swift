@@ -29,11 +29,22 @@ struct MonthStatsView: View {
                         
                         if statsViewModel.isMonthSelected(date: Date()) {
                             VStack {
-                                Text("Total Study Time Trends")
-                                    .font(.boldHeader)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(Color.theme.mainText)
-                                    .padding(.bottom, 15)
+                                HStack {
+                                    Text("Total Study Time Trends")
+                                        .font(.boldHeader)
+                                        .foregroundColor(Color.theme.mainText)
+                                    Spacer()
+                                    Image(systemName: "questionmark.circle")
+                                        .font(.mediumFont)
+                                        .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                        .frame(width: 50, height: 30, alignment: .trailing)
+                                        .background(Color.theme.BG)
+                                        .onTapGesture {
+                                            statsViewModel.currentExplanation = "trendsMonth"
+                                            statsViewModel.showExplanationPopup.toggle()
+                                        }
+                                }
+                                .padding(.bottom, 15)
                                 
                                 VStack(alignment: .leading, spacing: 10) {
                                     VStack(spacing: 3) {
@@ -70,11 +81,22 @@ struct MonthStatsView: View {
                         }
                         
                         VStack() {
-                            Text("Tag Overview")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Tag Overview")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "tagMonth"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             if !coreDataViewModel.monthPieChartData.isEmpty {
                                 TagsOverview(topicData: coreDataViewModel.monthPieChartData)
@@ -90,11 +112,22 @@ struct MonthStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack() {
-                            Text("Time Distribution")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Time Distribution")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "timeDistMonth"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             MonthTimeDistributionBarChart()
                         }
@@ -102,11 +135,22 @@ struct MonthStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack() {
-                            Text("Average Focus")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Average Focus")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "avgFocusMonth"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             if !isAvgDataEmpty() {
                                 HStack(spacing: 10){
@@ -152,11 +196,22 @@ struct MonthStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack {
-                            Text("Tag Distribution")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Tag Distribution")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "tagDistMonth"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             VStack {
                                 if !coreDataViewModel.monthPieChartData.isEmpty {

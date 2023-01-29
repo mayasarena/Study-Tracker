@@ -43,7 +43,7 @@ struct TimelineCardView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color.theme.secondaryText)
                     
-                    Text("Completed a \(String(calculateFocusedMinutes(startTime: startTime, endTime: endTime))) minute study session.")
+                    Text("Completed a \(MinutesToHoursMinutes(mins: (calculateFocusedMinutes(startTime: startTime, endTime: endTime)))) study session.")
                         .font(.regularFont)
                         .foregroundColor(Color.theme.mainText)
                         .frame(maxWidth: .infinity, alignment: .leading)

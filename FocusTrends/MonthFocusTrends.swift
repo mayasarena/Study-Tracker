@@ -23,7 +23,7 @@ struct MonthFocusTrends: View {
                     
                     VStack(spacing: 5) {
                         HStack(alignment: .bottom, spacing: 8) {
-                            Text("\(coreDataViewModel.monthFocusTrend[0].minsUpToNow) study mins")
+                            Text("\(MinutesToHoursMinutes(mins: coreDataViewModel.monthFocusTrend[0].minsUpToNow))")
                                 .font(.mediumBoldFont)
                                 .foregroundColor(Color.theme.mainText)
 
@@ -44,7 +44,7 @@ struct MonthFocusTrends: View {
                     
                     VStack(spacing: 5) {
                         HStack(alignment: .bottom, spacing: 8) {
-                            Text("\(coreDataViewModel.monthFocusTrend[1].minsUpToNow) study mins")
+                            Text("\(MinutesToHoursMinutes(mins: coreDataViewModel.monthFocusTrend[1].minsUpToNow))")
                                 .font(.mediumBoldFont)
                                 .foregroundColor(Color.theme.mainText)
 
@@ -65,7 +65,7 @@ struct MonthFocusTrends: View {
                     
                     VStack(spacing: 5) {
                         HStack(alignment: .bottom, spacing: 8) {
-                            Text("\(coreDataViewModel.monthFocusTrend[2].minsUpToNow) study mins")
+                            Text("\(MinutesToHoursMinutes(mins: coreDataViewModel.monthFocusTrend[2].minsUpToNow))")
                                 .font(.mediumBoldFont)
                                 .foregroundColor(Color.theme.mainText)
 

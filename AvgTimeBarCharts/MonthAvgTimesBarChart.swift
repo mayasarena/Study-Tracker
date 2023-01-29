@@ -28,10 +28,10 @@ struct MonthAvgTimesBarChart: View {
                             Text("\(Int(line))m")
                                 .font(.graphAxisFont)
                                 .foregroundColor(Color.theme.secondaryText)
-                                .frame(height: 20)
+                                .frame(width: 40, height: 20, alignment: .trailing)
                         }
                         .frame(maxHeight: .infinity, alignment: .bottom)
-                        .offset(y: -24)
+                        .offset(x: -5, y: -24)
                     }
                 }
             }
@@ -58,7 +58,7 @@ struct MonthAvgTimesBarChart: View {
                             .overlay(
                                 VStack {
                                     if data.averageTime > 0 {
-                                        Text("\(Int(data.averageTime))m")
+                                        Text("\(MinutesToHoursMinutes(mins: Int(data.averageTime)))")
                                             .font(.smallBoldFont)
                                             .padding(.horizontal, 7)
                                             .padding(.vertical, 3)
@@ -66,7 +66,7 @@ struct MonthAvgTimesBarChart: View {
                                             .cornerRadius(10)
                                             .shadow(color: Color.theme.accent.opacity(0.5), radius: 2, x: 2, y: 2)
                                             .foregroundColor(Color.theme.BG)
-                                            .frame(width: 50, alignment: .center)
+                                            .frame(width: 150, alignment: .center)
                                             .offset(y: -26)
                                     }
                                 }

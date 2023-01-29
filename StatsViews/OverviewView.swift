@@ -101,5 +101,8 @@ func MinutesToHoursMinutes(mins: Int) -> String {
     if hours == 0 {
         return "\(Int(minutes))m"
     }
+    else if minutes == 0 {
+        return "\(Int(hours))h"
+    }
     return "\(Int(hours))h \(Int(minutes))m"
 }

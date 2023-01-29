@@ -31,11 +31,22 @@ struct WeekStatsView: View {
                         
                         if (statsViewModel.isWeekSelected(date: Date())) {
                             VStack {
-                                Text("Total Study Time Trends")
-                                    .font(.boldHeader)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(Color.theme.mainText)
-                                    .padding(.bottom, 15)
+                                HStack {
+                                    Text("Total Study Time Trends")
+                                        .font(.boldHeader)
+                                        .foregroundColor(Color.theme.mainText)
+                                    Spacer()
+                                    Image(systemName: "questionmark.circle")
+                                        .font(.mediumFont)
+                                        .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                        .frame(width: 50, height: 30, alignment: .trailing)
+                                        .background(Color.theme.BG)
+                                        .onTapGesture {
+                                            statsViewModel.currentExplanation = "trendsWeek"
+                                            statsViewModel.showExplanationPopup.toggle()
+                                        }
+                                }
+                                .padding(.bottom, 15)
                                 
                                 VStack(alignment: .leading, spacing: 10) {
                                     VStack(spacing: 3) {
@@ -72,11 +83,22 @@ struct WeekStatsView: View {
                         }
                         
                         VStack() {
-                            Text("Tag Overview")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Tag Overview")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "tagWeek"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             if !coreDataViewModel.weekPieChartData.isEmpty {
                                 TagsOverview(topicData: coreDataViewModel.weekPieChartData)
@@ -92,11 +114,22 @@ struct WeekStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack() {
-                            Text("Time Distribution")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Time Distribution")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "timeDistWeek"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             WeekTimeDistributionBarChart()
                         }
@@ -104,11 +137,22 @@ struct WeekStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack() {
-                            Text("Average Focus")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Average Focus")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "avgFocusWeek"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             if !isAvgDataEmpty() {
                                 HStack(spacing: 10){
@@ -154,11 +198,22 @@ struct WeekStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack {
-                            Text("Tag Distribution")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Tag Distribution")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "tagDistWeek"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
 
                             VStack {
                                 if !coreDataViewModel.weekPieChartData.isEmpty {

@@ -42,6 +42,7 @@ struct TimelineView: View {
     @State var selectedStartTime: Date = Date()
     @State var selectedEndTime: Date = Date()
     @State private var showTopicSheet = false
+    @State private var showAddEntryPopup: Bool = false
     //@State var showTopicSelectionPopup: Bool = false
 
     //let fakeItems: [fakeItem]
@@ -79,7 +80,7 @@ struct TimelineView: View {
         .frame(maxWidth: .infinity)
         .background(Color.theme.BG)
         .padding(.bottom, 50)
-    
+        
         .popup(horizontalPadding: 40, show: $timelineViewModel.showEditEntryPopup) {
             editEntryPopup
                 .transition(.scale)

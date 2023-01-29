@@ -66,11 +66,131 @@ struct SettingsView: View {
     let accentTitleStrings = ["Purple (Default)", "Blue", "Green", "Orange", "Pink"]
     let accentNameStrings = ["PurpleAccent", "BlueAccent", "GreenAccent", "OrangeAccent", "PinkAccent"]
     
+    @AppStorage("userName") private var userName = ""
+    @AppStorage("timerEmoji") private var timerEmoji = "⏰"
+    @FocusState var isInputActive: Bool
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     VStack {
+                        
+                        Text("Notifications")
+                            .font(.regularSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .padding(.horizontal, 20)
+                            .padding(.top, 30)
+                            .padding(.bottom, 10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        VStack {
+                            HStack {
+                                Text("Timer Running Reminder")
+                                    .font(.mediumSemiBoldFont)
+                                    .foregroundColor(Color.theme.mainText)
+                                    .padding(.vertical, 5)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        settingsManager.colorMode = ColorMode.light
+                                        appColorManager.selectedColorMode = ColorMode.light
+                                    }
+                                
+                                Spacer()
+                                Toggle("", isOn: $reminderNotifOn)
+                                    .toggleStyle(SwitchToggleStyle(tint: Color.theme.accent))
+                                    .frame(width: 60)
+                            }
+                            
+                            if reminderNotifOn {
+                                NavigationLink(destination: ReminderNotificationView()        .background(Color.theme.BG)) {
+                                    HStack(spacing: 3) {
+                                        Text("Get a reminder that the timer is running every")
+                                            .font(.smallFont)
+                                            .foregroundColor(Color.theme.mainText)
+                                        Text("\(SecondsToHoursMinutes(seconds: Int(timerReminder)))")
+                                            .font(.smallFont)
+                                            .foregroundColor(Color.theme.accent)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .font(.smallFont)
+                                            .foregroundColor(Color.theme.secondaryText)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                }
+                            }
+                            
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color.theme.secondaryText.opacity(0.15))
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        Text("Stopwatch Page Customization")
+                            .font(.regularSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .padding(.horizontal, 20)
+                            .padding(.top, 30)
+                            .padding(.bottom, 10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        VStack {
+                            HStack {
+                                Text("Name")
+                                    .font(.mediumSemiBoldFont)
+                                    .foregroundColor(Color.theme.mainText)
+                                    .padding(.vertical, 5)
+                                    .padding(.trailing)
+                                
+                                TextField("Your name...", text: $userName)
+                                    .foregroundColor(Color.theme.mainText)
+                                    .focused($isInputActive)
+                                    .keyboardType(.alphabet)
+                                    .disableAutocorrection(true)
+                                    .font(.regularFont)
+                                    .padding(.leading)
+                                    .frame(height: 35)
+                                    .background(Color.theme.lightBG)
+                                    .cornerRadius(7)
+                            }
+                            .padding(.bottom, 5)
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    Spacer()
+                                    
+                                    Button("Done") {
+                                        isInputActive = false
+                                    }
+                                }
+                            }
+                            
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color.theme.secondaryText.opacity(0.15))
+                            
+                            NavigationLink(destination: TimerEmojiView()        .background(Color.theme.BG)) {
+                                HStack {
+                                    Text("Timer Emoji")
+                                        .font(.mediumSemiBoldFont)
+                                        .foregroundColor(Color.theme.mainText)
+                                        .padding(.vertical, 5)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Spacer()
+                                    Text("\(timerEmoji)")
+                                    Image(systemName: "chevron.right")
+                                        .font(.regularFont)
+                                        .foregroundColor(Color.theme.secondaryText)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                            
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color.theme.secondaryText.opacity(0.15))
+                        }
+                        .padding(.horizontal, 20)
 
                         Text("App Accent Colour")
                             .font(.regularSemiBoldFont)
@@ -120,7 +240,7 @@ struct SettingsView: View {
                                 }
                                 
                                 Rectangle()
-                                    .frame(maxHeight: 1)
+                                    .frame(height: 1)
                                     .foregroundColor(Color.theme.secondaryText.opacity(0.15))
                             }
                             .padding(.horizontal, 20)
@@ -160,7 +280,7 @@ struct SettingsView: View {
                             }
                             
                             Rectangle()
-                                .frame(maxHeight: 1)
+                                .frame(height: 1)
                                 .foregroundColor(Color.theme.secondaryText.opacity(0.15))
                         }
                         .padding(.horizontal, 20)
@@ -190,7 +310,7 @@ struct SettingsView: View {
                             }
                             
                             Rectangle()
-                                .frame(maxHeight: 1)
+                                .frame(height: 1)
                                 .foregroundColor(Color.theme.secondaryText.opacity(0.15))
                         }
                         .padding(.horizontal, 20)
@@ -220,58 +340,7 @@ struct SettingsView: View {
                             }
                             
                             Rectangle()
-                                .frame(maxHeight: 1)
-                                .foregroundColor(Color.theme.secondaryText.opacity(0.15))
-                        }
-                        .padding(.horizontal, 20)
-                        
-                        Text("Notifications")
-                            .font(.regularSemiBoldFont)
-                            .foregroundColor(Color.theme.secondaryText)
-                            .padding(.horizontal, 20)
-                            .padding(.top, 30)
-                            .padding(.bottom, 10)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        VStack {
-                            HStack {
-                                Text("Timer Running Reminder")
-                                    .font(.mediumSemiBoldFont)
-                                    .foregroundColor(Color.theme.mainText)
-                                    .padding(.vertical, 5)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .background(Color.theme.BG)
-                                    .onTapGesture {
-                                        settingsManager.colorMode = ColorMode.light
-                                        appColorManager.selectedColorMode = ColorMode.light
-                                    }
-                                
-                                Spacer()
-                                Toggle("", isOn: $reminderNotifOn)
-                                    .toggleStyle(SwitchToggleStyle(tint: Color.theme.accent))
-                                    .frame(width: 60)
-                            }
-                            
-                            if reminderNotifOn {
-                                NavigationLink(destination: ReminderNotificationView()) {
-                                    HStack(spacing: 3) {
-                                        Text("Get a reminder that the timer is running every")
-                                            .font(.smallFont)
-                                            .foregroundColor(Color.theme.mainText)
-                                        Text("\(SecondsToHoursMinutes(seconds: Int(timerReminder)))")
-                                            .font(.smallFont)
-                                            .foregroundColor(Color.theme.accent)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .font(.smallFont)
-                                            .foregroundColor(Color.theme.secondaryText)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                }
-                            }
-                            
-                            Rectangle()
-                                .frame(maxHeight: 1)
+                                .frame(height: 1)
                                 .foregroundColor(Color.theme.secondaryText.opacity(0.15))
                         }
                         .padding(.horizontal, 20)
@@ -363,6 +432,87 @@ struct ReminderNotificationView: View {
         let minutesToSeconds = mins * 60
         let seconds = hoursToSeconds + minutesToSeconds
         return seconds
+    }
+    
+}
+
+struct TimerEmojiView: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    @AppStorage("timerHours") private var hours: Int = 1
+    @AppStorage("timerMinutes") private var minutes: Int = 30
+//    @State var hours: Int = 0
+//    @State var minutes: Int = 0
+    @AppStorage("timerReminder") private var timerReminder: Double = 60
+    @AppStorage("timerEmoji") private var timerEmoji = "⏰"
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 15) {
+                ForEach(getEmojiList(), id: \.self) { i in
+                    HStack(spacing: 25) {
+                        ForEach(i, id: \.self) { j in
+                            Button(action: {
+                                timerEmoji = String(UnicodeScalar(j)!)
+                            }) {
+                                if ((UnicodeScalar(j)?.properties.isEmoji) != nil) {
+                                    Text(String(UnicodeScalar(j)!)).font(.system(size: 35))
+                                } else {
+                                    Text("")
+                                }
+                            }
+                            .background(
+                                Circle()
+                                    .frame(width: 45, height: 45)
+                                    .foregroundColor((String(UnicodeScalar(j)!) == timerEmoji) ? Color.theme.accent : Color.theme.BG)
+                            )
+                        }
+                    }
+                }
+            }
+            .padding()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .navigationBarTitle(
+            Text("Timer Emoji")
+        )
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading:
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(Color.theme.accent)
+                Text("Back")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.accent)
+            }
+        })
+        .accentColor(Color.theme.secondaryText)
+        .padding()
+    }
+    
+    func getEmojiList() -> [[Int]] {
+        let emojis: [[Int]] =
+        [[0x23F0, 0x23F3, 0x23F1, 0x1F4D6, 0x1F4DA],
+         [0x1F4D3, 0x1F4D2, 0x1F4DD, 0x270F, 0x1F4B0],
+          [0x1F319, 0x1F31F, 0x26A1, 0x2728, 0x1F98B],
+         [0x1F338, 0x1F335, 0x1F33B, 0x1F33C, 0x1F344],
+         [0x1F349, 0x1F34D, 0x1F351, 0x1F352, 0x1F353],
+         [0x1F41B, 0x1F41D, 0x1F41E, 0x1F420, 0x1F422],
+         [0x1F423, 0x1F425, 0x1F428, 0x1F42C, 0x1F430],
+         [0x1F431, 0x1F433, 0x1F435, 0x1F436, 0x1F984],
+         [0x1F439, 0x1F43B, 0x1F43C, 0x1F451, 0x1F380],
+         [0x2764, 0x1F499, 0x1F49A, 0x1F49B, 0x1F49C],
+         [0x1F9E1, 0x1F48C, 0x1F493, 0x1F495, 0x1F496],
+         [0x1FAB4, 0x1F332, 0x1F3D4, 0x1F3DD, 0x1F308]
+        ]
+
+        
+        return emojis
     }
     
 }

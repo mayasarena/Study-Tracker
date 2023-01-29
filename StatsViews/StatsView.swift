@@ -120,6 +120,227 @@ struct StatsView: View {
                 .cornerRadius(25)
                 .padding(.horizontal, 10)
         }
+        
+        .popup(horizontalPadding: 40, show: $statsViewModel.showExplanationPopup) {
+            explanationPopup
+                .transition(.scale)
+                .padding(.vertical, 10)
+                .background(Color.theme.BG)
+                .cornerRadius(25)
+                .padding(.horizontal, 10)
+        }
+    }
+    
+    var explanationPopup: some View {
+        VStack (spacing: 30) {
+            if statsViewModel.currentExplanation == "trendsDay" {
+                VStack(spacing: 15) {
+                    Text("Total Study Time Trends (Daily) shows you how much you have studied up to the current time compared to yesterday at the same time and the day before yesterday at the same time.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    Text("Using this feedback, you can see if you're trending up or down with the amount of time that you devote to studying.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.secondaryText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "trendsWeek" {
+                VStack (spacing: 15){
+                    Text("Total Study Time Trends (Weekly) shows you how much you have studied so far this week compared to last week on the same day and the week before last week on the same day.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    Text("Using this feedback, you can see if you're trending up or down with the amount of time that you devote to studying.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.secondaryText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "trendsMonth" {
+                VStack (spacing: 15){
+                    Text("Total Study Time Trends (Monthly) shows you how much you have studied so far this month compared to last month up to the same day and the month before last month up to the same day.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    Text("Using this feedback, you can see if you're trending up or down with the amount of time that you devote to studying.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.secondaryText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "tagDay" {
+                Text("Tag Overview (Daily) shows you the total amount of time spent studying with each tag today.")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.mainText)
+            }
+            else if statsViewModel.currentExplanation == "tagWeek" {
+                Text("Tag Overview (Weekly) shows you the total amount of time spent studying with each tag this week.")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.mainText)
+            }
+            else if statsViewModel.currentExplanation == "tagMonth" {
+                Text("Tag Overview (Monthly) shows you the total amount of time spent studying with each tag this month.")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.mainText)
+            }
+            else if statsViewModel.currentExplanation == "timeDistDay" {
+                VStack(spacing: 15) {
+                    Text("Time Distribution (Daily) shows you how much time per hour you have spent studying today.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    HStack (spacing: 20) {
+                        Text("x axis = hour of day")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 120)
+                        
+                        Text("y axis = minutes spent studying")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 120)
+                    }
+                    
+                    Text("Drag your finger across the graph to see the exact times for each hour.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.mainText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "timeDistWeek" {
+                VStack(spacing: 15) {
+                    Text("Time Distribution (Weekly) shows you how much time per weekday you have spent studying this week.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    HStack (spacing: 20) {
+                        Text("x axis = day of week")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 120)
+                        
+                        Text("y axis = minutes spent studying")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 120)
+                    }
+                    
+                    Text("Drag your finger across the graph to see the exact times for each weekday.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.mainText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "timeDistMonth" {
+                VStack(spacing: 15) {
+                    Text("Time Distribution (Monthly) shows you how much time per day you have spent studying this month.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    HStack (spacing: 20) {
+                        Text("x axis = day of month")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 120)
+                        
+                        Text("y axis = minutes spent studying")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 120)
+                    }
+                    
+                    Text("Drag your finger across the graph to see the exact times for each day.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.mainText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "avgFocusWeek" {
+                VStack(spacing: 15) {
+                    Text("Average Focus (Weekly) shows you the average amount of time that you have studied per hour this week.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    HStack (spacing: 20) {
+                        Text("x axis = hour of day")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 100)
+                        
+                        Text("y axis = average minutes spent studying")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 150)
+                    }
+                    
+                    VStack(spacing: 5) {
+                        Text("Calculation: sum of minutes spent studying during that hour this week / current day of week (where Sunday = 1 and Saturday = 7)")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                        Text("Calculation if week has past: sum of minutes spent studying during that hour for the week / 7")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                    }
+                    .padding(.horizontal, 15)
+                    
+                    Text("Drag your finger across the graph to see the exact times for each hour.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.mainText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "avgFocusMonth" {
+                VStack(spacing: 15) {
+                    Text("Average Focus (Monthly) shows you the average amount of time that you have studied per weekday this month.")
+                        .font(.regularFont)
+                        .foregroundColor(Color.theme.mainText)
+                    
+                    HStack (spacing: 20) {
+                        Text("x axis = weekday")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 100)
+                        
+                        Text("y axis = average minutes spent studying")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                            .frame(width: 150)
+                    }
+                    
+                    VStack(spacing: 5) {
+                        Text("Calculation: sum of minutes spent studying during that weekday this month / number of times that weekday occurs in the month (usually either 4 or 5)")
+                            .font(.smallSemiBoldFont)
+                            .foregroundColor(Color.theme.secondaryText)
+                    }
+                    .padding(.horizontal, 15)
+                    
+                    Text("Drag your finger across the graph to see the exact times for each weekday.")
+                        .font(.smallFont)
+                        .foregroundColor(Color.theme.mainText)
+                }
+            }
+            else if statsViewModel.currentExplanation == "tagDistDay" {
+                Text("Tag Distribution (Daily) shows you the percent of time that you have spent on each tag today.")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.mainText)
+            }
+            else if statsViewModel.currentExplanation == "tagDistWeek" {
+                Text("Tag Distribution (Weekly) shows you the percent of time that you have spent on each tag this week.")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.mainText)
+            }
+            else if statsViewModel.currentExplanation == "tagDistMonth" {
+                Text("Tag Distribution (Monthly) shows you the percent of time that you have spent on each tag this month.")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.mainText)
+            }
+            else {
+                Text("Error. How did you get here?")
+                    .font(.regularFont)
+                    .foregroundColor(Color.theme.mainText)
+            }
+            Button("Okay") {
+                statsViewModel.showExplanationPopup.toggle()
+            }
+            .buttonStyle(PrimaryButtonStyle())
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
+        .padding()
     }
     
     var datePickerPopup: some View {

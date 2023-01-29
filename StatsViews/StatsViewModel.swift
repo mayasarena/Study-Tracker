@@ -20,6 +20,8 @@ class StatsViewModel: ObservableObject {
     @Published var selectedWeekEndDate: Date = Date()
     @Published var selectedMonthStartDate: Date = Date()
     @Published var calendarPickerOpened: Bool = false
+    @Published var currentExplanation: String = ""
+    @Published var showExplanationPopup: Bool = false
     
     init() {
         getCurrentWeek()

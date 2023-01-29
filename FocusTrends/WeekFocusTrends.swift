@@ -23,7 +23,7 @@ struct WeekFocusTrends: View {
                     
                     VStack(spacing: 5) {
                         HStack(alignment: .bottom, spacing: 8) {
-                            Text("\(coreDataViewModel.weekFocusTrend[0].minsUpToNow) study mins")
+                            Text("\(MinutesToHoursMinutes(mins: coreDataViewModel.weekFocusTrend[0].minsUpToNow))")
                                 .font(.mediumBoldFont)
                                 .foregroundColor(Color.theme.mainText)
 
@@ -44,7 +44,7 @@ struct WeekFocusTrends: View {
                     
                     VStack(spacing: 5) {
                         HStack(alignment: .bottom, spacing: 8) {
-                            Text("\(coreDataViewModel.weekFocusTrend[1].minsUpToNow) study mins")
+                            Text("\(MinutesToHoursMinutes(mins: coreDataViewModel.weekFocusTrend[1].minsUpToNow))")
                                 .font(.mediumBoldFont)
                                 .foregroundColor(Color.theme.mainText)
 
@@ -65,7 +65,7 @@ struct WeekFocusTrends: View {
                     
                     VStack(spacing: 5) {
                         HStack(alignment: .bottom, spacing: 8) {
-                            Text("\(coreDataViewModel.weekFocusTrend[2].minsUpToNow) study mins")
+                            Text("\(MinutesToHoursMinutes(mins: coreDataViewModel.weekFocusTrend[2].minsUpToNow))")
                                 .font(.mediumBoldFont)
                                 .foregroundColor(Color.theme.mainText)
 

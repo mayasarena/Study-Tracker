@@ -30,11 +30,22 @@ struct DayStatsView: View {
                         
                         if statsViewModel.isDaySelected(date: Date()) {
                             VStack {
-                                Text("Total Study Time Trends")
-                                    .font(.boldHeader)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(Color.theme.mainText)
-                                    .padding(.bottom, 15)
+                                HStack {
+                                    Text("Total Study Time Trends")
+                                        .font(.boldHeader)
+                                        .foregroundColor(Color.theme.mainText)
+                                    Spacer()
+                                    Image(systemName: "questionmark.circle")
+                                        .font(.mediumFont)
+                                        .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                        .frame(width: 50, height: 30, alignment: .trailing)
+                                        .background(Color.theme.BG)
+                                        .onTapGesture {
+                                            statsViewModel.currentExplanation = "trendsDay"
+                                            statsViewModel.showExplanationPopup.toggle()
+                                        }
+                                }
+                                .padding(.bottom, 15)
                                 
                                 VStack(alignment: .leading, spacing: 10) {
                                     VStack(spacing: 3) {
@@ -71,11 +82,22 @@ struct DayStatsView: View {
                         }
                         
                         VStack() {
-                            Text("Tag Overview")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Tag Overview")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "tagDay"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             if !coreDataViewModel.dayPieChartData.isEmpty {
                                 TagsOverview(topicData: coreDataViewModel.dayPieChartData)
@@ -91,11 +113,22 @@ struct DayStatsView: View {
                         .padding(.vertical, 15)
                         
                         VStack() {
-                            Text("Time Distribution")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Time Distribution")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "timeDistDay"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
                             
                             DayTimeDistributionBarChart()
                         }
@@ -103,11 +136,22 @@ struct DayStatsView: View {
                         .padding(.vertical, 15)
                     
                         VStack {
-                            Text("Tag Distribution")
-                                .font(.boldHeader)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(Color.theme.mainText)
-                                .padding(.vertical, 15)
+                            HStack {
+                                Text("Tag Distribution")
+                                    .font(.boldHeader)
+                                    .foregroundColor(Color.theme.mainText)
+                                Spacer()
+                                Image(systemName: "questionmark.circle")
+                                    .font(.mediumFont)
+                                    .foregroundColor(Color.theme.secondaryText).opacity(0.6)
+                                    .frame(width: 50, height: 30, alignment: .trailing)
+                                    .background(Color.theme.BG)
+                                    .onTapGesture {
+                                        statsViewModel.currentExplanation = "tagDistDay"
+                                        statsViewModel.showExplanationPopup.toggle()
+                                    }
+                            }
+                            .padding(.bottom, 15)
 
                             VStack {
                                 if !coreDataViewModel.dayPieChartData.isEmpty {

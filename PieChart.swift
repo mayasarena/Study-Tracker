@@ -103,7 +103,7 @@ func PieChartLegendView(data: [PieChartEntries]) -> some View {
         VStack (alignment: .leading, spacing: 10) {
             ForEach(data) { entry in
                 if entry.totalMinsFocused != 0{
-                    Text("\(Int(entry.totalMinsFocused))m")
+                    Text("\(MinutesToHoursMinutes(mins: Int(entry.totalMinsFocused)))")
                         .font(.regularSemiBoldFont)
                         .foregroundColor(Color.theme.mainText)
                 }
