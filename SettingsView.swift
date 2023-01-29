@@ -48,6 +48,11 @@ class AppColorManager: ObservableObject {
         selectedAccentColor = accentColor
         selectedColorMode = colorMode
     }
+    
+    public func updateTheme() {
+        Color.theme = ColorTheme()
+        
+    }
 }
 
 struct SettingsView: View {
@@ -56,15 +61,14 @@ struct SettingsView: View {
     @EnvironmentObject var settingsManager: SettingsManager
     @AppStorage("colorMode") private var colorMode: ColorMode = .unspecified
     @AppStorage("accentColor") private var accentColor = "PurpleAccent"
-    @AppStorage("timerReminder") private var timerReminder: Double = 60
+    @AppStorage("timerReminder") private var timerReminder: Double = 7200
     @AppStorage("reminderNotificationOn") private var reminderNotifOn: Bool = true
-    @State var showColorChangeAlert: Bool = false
     
     let userDefaults = UserDefaults.standard
     let ACCENT_COLOR_KEY = "accentColor"
     
-    let accentTitleStrings = ["Purple (Default)", "Blue", "Green", "Orange", "Pink"]
-    let accentNameStrings = ["PurpleAccent", "BlueAccent", "GreenAccent", "OrangeAccent", "PinkAccent"]
+    let accentTitleStrings = ["Purple", "Blue", "Teal", "Forest", "Olive", "Orange", "Pink", "Red"]
+    let accentNameStrings = ["PurpleAccent", "BlueAccent", "TealAccent", "GreenAccent", "LimeAccent", "OrangeAccent", "PinkAccent", "RedAccent"]
     
     @AppStorage("userName") private var userName = ""
     @AppStorage("timerEmoji") private var timerEmoji = "⏰"
@@ -91,11 +95,6 @@ struct SettingsView: View {
                                     .foregroundColor(Color.theme.mainText)
                                     .padding(.vertical, 5)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                    .background(Color.theme.BG)
-                                    .onTapGesture {
-                                        settingsManager.colorMode = ColorMode.light
-                                        appColorManager.selectedColorMode = ColorMode.light
-                                    }
                                 
                                 Spacer()
                                 Toggle("", isOn: $reminderNotifOn)
@@ -200,7 +199,7 @@ struct SettingsView: View {
                             .padding(.bottom, 10)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        ForEach(0...4, id: \.self) { index in
+                        ForEach(0...7, id: \.self) { index in
                             
                             VStack {
                                 HStack {
@@ -221,12 +220,8 @@ struct SettingsView: View {
                                         accentColor = accentNameStrings[index]
                                         appColorManager.selectedAccentColor = accentColor
                                         print("clicked \(accentTitleStrings[index])")
-                                        showColorChangeAlert = true
+                                        appColorManager.updateTheme()
                                     }
-                                    .alert(isPresented: $showColorChangeAlert) {
-                                        Alert(
-                                            title: Text("New accent color will be applied once the app is restarted."),
-                                            message: Text("To fully close the app, swipe from the bottom of the phone screen to the middle of the screen, which will open the multitasking view. Scroll to find this app then swipe up on it to close it. Once you re-open the app, your new accent color will be applied!"))}
                                     Spacer()
                                     Circle()
                                         .strokeBorder(lineWidth: 1)
@@ -365,7 +360,7 @@ struct ReminderNotificationView: View {
     @AppStorage("timerMinutes") private var minutes: Int = 30
 //    @State var hours: Int = 0
 //    @State var minutes: Int = 0
-    @AppStorage("timerReminder") private var timerReminder: Double = 60
+    @AppStorage("timerReminder") private var timerReminder: Double = 7200
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -443,7 +438,7 @@ struct TimerEmojiView: View {
     @AppStorage("timerMinutes") private var minutes: Int = 30
 //    @State var hours: Int = 0
 //    @State var minutes: Int = 0
-    @AppStorage("timerReminder") private var timerReminder: Double = 60
+    @AppStorage("timerReminder") private var timerReminder: Double = 7200
     @AppStorage("timerEmoji") private var timerEmoji = "⏰"
     
     var body: some View {

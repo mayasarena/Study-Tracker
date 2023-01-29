@@ -200,7 +200,7 @@ struct StatsView: View {
                     }
                     
                     Text("Drag your finger across the graph to see the exact times for each hour.")
-                        .font(.smallFont)
+                        .font(.regularSemiBoldFont)
                         .foregroundColor(Color.theme.mainText)
                 }
             }
@@ -223,7 +223,7 @@ struct StatsView: View {
                     }
                     
                     Text("Drag your finger across the graph to see the exact times for each weekday.")
-                        .font(.smallFont)
+                        .font(.regularSemiBoldFont)
                         .foregroundColor(Color.theme.mainText)
                 }
             }
@@ -246,7 +246,7 @@ struct StatsView: View {
                     }
                     
                     Text("Drag your finger across the graph to see the exact times for each day.")
-                        .font(.smallFont)
+                        .font(.regularSemiBoldFont)
                         .foregroundColor(Color.theme.mainText)
                 }
             }
@@ -279,7 +279,7 @@ struct StatsView: View {
                     .padding(.horizontal, 15)
                     
                     Text("Drag your finger across the graph to see the exact times for each hour.")
-                        .font(.smallFont)
+                        .font(.regularSemiBoldFont)
                         .foregroundColor(Color.theme.mainText)
                 }
             }
@@ -309,7 +309,7 @@ struct StatsView: View {
                     .padding(.horizontal, 15)
                     
                     Text("Drag your finger across the graph to see the exact times for each weekday.")
-                        .font(.smallFont)
+                        .font(.regularSemiBoldFont)
                         .foregroundColor(Color.theme.mainText)
                 }
             }

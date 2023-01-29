@@ -10,7 +10,7 @@ import SwiftUI
 
 extension Color {
     
-    static let theme = ColorTheme()
+    static var theme = ColorTheme()
 
 }
     

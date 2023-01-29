@@ -31,7 +31,7 @@ struct TabBar: View {
                 HStack(spacing: 1) {
                     MenuButtons(image: "tag.fill", title: "Tags")
                     MenuButtons(image: "clock.arrow.circlepath", title: "History")
-                    MenuButtons(image: "stopwatch.fill", title: "Stopwatch")
+                    StopWatchButton(image: "stopwatch.fill", title: "Stopwatch")
                     MenuButtons(image: "chart.bar.fill", title: "Charts")
                     MenuButtons(image: "gear", title: "Settings")
                     //MenuButtons(image: "circle", title: "Notifs")
@@ -110,8 +110,8 @@ struct MenuButtons: View {
     var body: some View {
         VStack(spacing: 0) {
             Image(systemName: image)
+                .font(.system(size: 18))
                 .frame(width: 30, height: 30)
-                .font(.system(size: 20))
             Text(title)
                 .font(.system(size: 10))
                 .fontWeight(.semibold)
@@ -121,6 +121,36 @@ struct MenuButtons: View {
         .padding(.horizontal, 3)
         .padding(.top)
         .padding(.bottom)
+        .onTapGesture {
+            sideMenuVM.updateSelectedIndex(index: title)
+        }
+    }
+}
+
+struct StopWatchButton: View {
+    
+    @AppStorage("accentColor") private var accentColor = "PurpleAccent"
+    @ObservedObject var sideMenuVM = TabBarViewModel.instance
+    var image: String
+    var title: String
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            Image(systemName: image)
+                .font(.system(size: 25))
+                .frame(width: 35, height: 35)
+            Text(title)
+                .font(.system(size: 10))
+                .fontWeight(.semibold)
+        }
+        .foregroundColor(sideMenuVM.selectedIndex == title ? Color.theme.mainText : Color.theme.accent)
+        .frame(width: UIScreen.main.bounds.width/5-15, height: 50, alignment: .center)
+        .padding(.horizontal, 3)
+        .padding(.top)
+        .padding(.bottom)
+        .onChange(of: accentColor, perform: { _ in
+            print("Color changed - updating tab bar")
+        })
         .onTapGesture {
             sideMenuVM.updateSelectedIndex(index: title)
         }

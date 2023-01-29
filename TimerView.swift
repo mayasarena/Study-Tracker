@@ -50,7 +50,7 @@ struct TimerView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            VStack(spacing: 0) {
+            VStack(spacing: -1) {
                 VStack(spacing: UIScreen.main.bounds.height * 0.02) {
                     // MARK: Choose Tag
                     ZStack {

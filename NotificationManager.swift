@@ -14,7 +14,7 @@ class NotificationManager {
     init() {
         let defaults = UserDefaults.standard
         if defaults.object(forKey: "timerReminder") == nil {
-            defaults.set(60, forKey: "timerReminder")
+            defaults.set(7200, forKey: "timerReminder")
             print("timer reminder set")
         }
         

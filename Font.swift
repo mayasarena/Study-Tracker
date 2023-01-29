@@ -16,6 +16,7 @@ extension Font {
     static let regularFont = Font.custom("OpenSans-Regular", size: 14)
     static let mediumFont = Font.custom("OpenSans-Regular", size: 16)
     static let smallFont = Font.custom("OpenSans-Regular", size: 12)
+    static let tinyFont = Font.custom("OpenSans-Regular", size: 10)
     
     static let tinyBoldFont = Font.custom("OpenSans-Bold", size: 10)
     static let smallBoldFont = Font.custom("OpenSans-Bold", size: 12)
