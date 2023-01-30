@@ -21,11 +21,13 @@ struct TimerView: View {
     @State private var showWarningPopup = false
     @State private var showTopicSheet = false
     @State private var showCompletePopup = false
+    @State private var showMaxTimePopup = false
     @State private var focusedMinutesString = ""
     
     let userDefaults = UserDefaults.standard
     let START_TIME_KEY = "startTime"
     let IS_COUNTING_KEY = "isCounting"
+    let MAX_TIME = 28800
     
     @AppStorage("timerSelectedTopicName") var selectedTopicName = ""
     @AppStorage("userName") private var userName = ""
@@ -99,6 +101,7 @@ struct TimerView: View {
                         Button(action: {
                             SoundManager.instance.playSound(sound: .button_click_1)
                             NotificationManager.instance.scheduleTimerReminderNotification()
+                            NotificationManager.instance.scheduleTimerStoppedNotification()
                             self.stopWatchManager.start()
                             startTime = Date()
                             
@@ -219,6 +222,14 @@ struct TimerView: View {
             .background(Color.theme.BG)
             .padding(.bottom, 50)
         }
+        .onChange(of: stopWatchManager.secondsElapsed, perform: { newValue in
+            if (stopWatchManager.secondsElapsed >= MAX_TIME) {
+                SoundManager.instance.playSound(sound: .study_done)
+                self.stopWatchManager.stop()
+                recordInfo(end: startPlusMaxTime())
+                showMaxTimePopup.toggle()
+            }
+        })
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
                 print("Active")
@@ -229,6 +240,12 @@ struct TimerView: View {
                     let startTime = userDefaults.object(forKey: START_TIME_KEY) as? Date
                     let difference = (startTime ?? Date()).timeIntervalSinceNow
                     stopWatchManager.setSecondsElapsed(time: Int(difference * -1))
+                    if (stopWatchManager.secondsElapsed >= MAX_TIME) {
+                        SoundManager.instance.playSound(sound: .study_done)
+                        self.stopWatchManager.stop()
+                        recordInfo(end: startPlusMaxTime())
+                        showMaxTimePopup.toggle()
+                    }
                 }
                 else {
                     print("timer not running")
@@ -254,6 +271,13 @@ struct TimerView: View {
                     let topic = coreDataViewModel.topicSearchedByName[0]
                     coreDataViewModel.timerViewSelectedTopicEntity = topic
                 }
+            }
+            
+            if (stopWatchManager.secondsElapsed >= MAX_TIME) {
+                SoundManager.instance.playSound(sound: .study_done)
+                self.stopWatchManager.stop()
+                recordInfo(end: startPlusMaxTime())
+                showMaxTimePopup.toggle()
             }
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -289,6 +313,102 @@ struct TimerView: View {
                 .cornerRadius(25)
                 .padding(.horizontal, 30)
         }
+        
+        // POPUP
+        .popup(horizontalPadding: 40, show: $showMaxTimePopup) {
+            // Popup content which will also perform navigation ?? whatever that means
+            maxTimePopup
+                .transition(.scale)
+                .padding(.vertical, 10)
+                .background(Color.theme.BG)
+                .cornerRadius(25)
+                .padding(.horizontal, 30)
+        }
+    }
+    
+    func startPlusMaxTime() -> Date {
+        let calendar = Calendar.current
+        let startTime = userDefaults.object(forKey: START_TIME_KEY) as? Date
+        let date = calendar.date(byAdding: .second, value: MAX_TIME, to: startTime ?? Date()) ?? Date()
+        return date
+    }
+    
+    func recordInfo(end: Date) {
+        endTime = end
+        selectedTopicName = ""
+        userDefaults.set(false, forKey: IS_COUNTING_KEY)
+        print(userDefaults.bool(forKey: "isCounting"))
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        print("START TIME: ")
+        print(userDefaults.object(forKey: "startTime") ?? Date())
+        let startTimeUD = userDefaults.object(forKey: START_TIME_KEY) as? Date
+        let calendar = Calendar.current
+        
+        // Check if studying past midnight
+        let startDay = calendar.component(.day, from: startTimeUD ?? Date())
+        let endDay = calendar.component(.day, from: endTime)
+        
+        if startDay != endDay {
+            var components = DateComponents()
+            components.day = 1
+            components.second = -1
+            let day1End = calendar.date(byAdding: components, to: calendar.startOfDay(for: startTimeUD ?? Date()))
+            let day2Begin = calendar.startOfDay(for: endTime)
+            
+            let focusedMinutesDay1 = calculateFocusedMinutes(startTime: startTimeUD ?? Date(), endTime: day1End ?? Date())
+            let focusedMinutesDay2 = calculateFocusedMinutes(startTime: day2Begin, endTime: endTime)
+            let focusedMinutes = focusedMinutesDay1 + focusedMinutesDay2
+            focusedMinutesString = MinutesToHoursMinutes(mins: focusedMinutes)
+            
+            // add first day data
+            coreDataViewModel.addTimeData(startTime: startTimeUD ?? Date(), endTime: day1End ?? Date(), topicEntity: coreDataViewModel.timerViewSelectedTopicEntity)
+            
+            // add second day data
+            coreDataViewModel.addTimeData(startTime: day2Begin, endTime: endTime, topicEntity: coreDataViewModel.timerViewSelectedTopicEntity)
+            
+        }
+        
+        // Study time in same day
+        else {
+            coreDataViewModel.addTimeData(startTime: startTimeUD ?? Date(), endTime: endTime, topicEntity: coreDataViewModel.timerViewSelectedTopicEntity)
+            let focusedMinutes = calculateFocusedMinutes(startTime: startTimeUD ?? Date(), endTime: endTime)
+            focusedMinutesString = MinutesToHoursMinutes(mins: focusedMinutes)
+        }
+    }
+    
+    var maxTimePopup: some View {
+        VStack(spacing: 0) {
+            Text("🥳")
+                .font(.system(size: 100))
+                .padding(.bottom, 10)
+            
+            VStack(spacing: 10) {
+                Text("Timer Stopped")
+                    .foregroundColor(Color.theme.mainText)
+                    .font(.mediumBoldFont)
+                Text("Your timer was stopped for you because it reached the max time. You have successfully completed a \(focusedMinutesString) study session.")
+                    .padding(.horizontal, 30)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color.theme.secondaryText)
+                    .font(.regularSemiBoldFont)
+            }
+            
+            Button {
+                withAnimation {
+                    selectedTopicName = ""
+                    SoundManager.instance.playSound(sound: .button_click_ok)
+                    showMaxTimePopup.toggle()
+                }
+            } label: {
+                Text("Close")
+                    .tracking(2)
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding(.top, 30)
+            
+        }
+        .padding()
+        
     }
     
     var sessionCompletePopup: some View {

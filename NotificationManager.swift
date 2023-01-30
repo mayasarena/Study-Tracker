@@ -81,7 +81,37 @@ class NotificationManager {
     }
     
     func cancelTimerReminderNotification() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["timerReminder"])
+        print("Cancelled timer reminder notification")
+    }
+    
+    func scheduleTimerStoppedNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Your session is over!"
+        content.subtitle = "It has reached the max time of 8 hours."
+        content.sound = .default
+        content.badge = 0
+        
+        // 8 hours: 28800
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 28800, repeats: false)
+        
+        let request = UNNotificationRequest(
+            identifier: "timerStopped",
+            content: content,
+            trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+        print("Scheduled timer stopped notification")
+        
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                print(request)
+            }
+        })
+    }
+    
+    func cancelTimerStoppedNotification() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["timerStopped"])
         print("Cancelled timer reminder notification")
     }
 }
