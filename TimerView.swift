@@ -27,7 +27,7 @@ struct TimerView: View {
     let userDefaults = UserDefaults.standard
     let START_TIME_KEY = "startTime"
     let IS_COUNTING_KEY = "isCounting"
-    let MAX_TIME = 28800
+    let MAX_TIME = 28801
     
     @AppStorage("timerSelectedTopicName") var selectedTopicName = ""
     @AppStorage("userName") private var userName = ""

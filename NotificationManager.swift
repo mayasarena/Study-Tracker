@@ -38,7 +38,7 @@ class NotificationManager {
     func scheduleTimerReminderNotification() {
         let content = UNMutableNotificationContent()
         content.title = "Are you still studying?"
-        content.subtitle = "Your timer is still running! Don't forget to stop it (or take a study break)."
+        content.body = "Your timer is still running! Don't forget to stop it (or take a study break 😌)."
         content.sound = .default
         content.badge = 0
         
@@ -88,12 +88,12 @@ class NotificationManager {
     func scheduleTimerStoppedNotification() {
         let content = UNMutableNotificationContent()
         content.title = "Your session is over!"
-        content.subtitle = "It has reached the max time of 8 hours."
+        content.body = "It has reached the max time of 8 hours ⏰."
         content.sound = .default
         content.badge = 0
         
         // 8 hours: 28800
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 28800, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 28801, repeats: false)
         
         let request = UNNotificationRequest(
             identifier: "timerStopped",
